@@ -9,9 +9,9 @@ public class MyLinkedList<E> {
         private E data;
         private Node next;
 
-        public Node(E data, Node next) {
+        public Node(E data) {
             this.data = data;
-            this.next = next;
+            this.next = null;
         }
     }
 
@@ -25,15 +25,15 @@ public class MyLinkedList<E> {
         return size == 0;
     }
 
-    public void add(int index, E e) {
-        if (index == 0) addFirst(e);
-        else if (index >= size) addLast(e);
+    public void add(int index, E item) {
+        if (index == 0) addFirst(item);
+        else if (index >= size) addLast(item);
         else {
             Node current = head;
             for (int i = 1; i < index; i++)
                 current = current.next;
             Node temp = current.next;
-            current.next = new Node(e, null);
+            current.next = new Node(item);
             current.next.next = temp;
             size++;
         }
@@ -41,11 +41,11 @@ public class MyLinkedList<E> {
 
     public void addLast(E item) {
         if (!isEmpty()) {
-            tail.next = new Node(item, null);
+            tail.next = new Node(item);
             tail = tail.next;
         }
         else {
-            tail = new Node(item, null);
+            tail = new Node(item);
             head = tail;
         }
         size++;
@@ -54,11 +54,11 @@ public class MyLinkedList<E> {
     public void addFirst(E item) {
         if (!isEmpty()) {
             Node holder = head;
-            head = new Node(item, null);
+            head = new Node(item);
             head.next = holder;
         }
         else {
-            tail = new Node(item, null);
+            tail = new Node(item);
             head = tail;
         }
         size++;
